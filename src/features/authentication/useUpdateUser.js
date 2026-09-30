@@ -11,9 +11,11 @@ export function useUpdateUser() {
       console.log(user);
 
       toast.success('User account successfully updated');
-      // queryClient.setQueryData('user', user);
 
-      queryClient.invalidateQueries({ queryKey: ['user'] });
+      // 수동으로 처리
+      queryClient.setQueryData(['user'], user);
+
+      // queryClient.invalidateQueries({ queryKey: ['user'] });
     },
     onError: (err) => toast.error(err.message),
   });
